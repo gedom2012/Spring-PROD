@@ -14,8 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.apache.logging.log4j.util.Strings;
-
 import com.mariath.spring.domain.enums.TipoCliente;
 
 @Entity
@@ -29,6 +27,9 @@ public class Cliente implements Serializable {
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
+	
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
@@ -121,6 +122,15 @@ public class Cliente implements Serializable {
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
 	}
+	
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
 
 
 	@Override
@@ -148,6 +158,6 @@ public class Cliente implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 	
 }
