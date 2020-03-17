@@ -15,18 +15,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-public class Pedido implements Serializable{
+public class Pedido implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Date instance;
 	
-	@ManyToOne
-	@JoinColumn(name = "endereco_de_entrega_id")
-	private Endereco enderecoDeEntrega;
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+	private Date instance;
 	
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
 	private Pagamento pagamento;
@@ -35,20 +36,24 @@ public class Pedido implements Serializable{
 	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "endereco_de_entrega_id")
+	private Endereco enderecoDeEntrega;	
+
 	@OneToMany(mappedBy = "id.pedido")
 	private Set<ItemPedido> itens = new HashSet<>();
-	
+
 	public Pedido() {
-		
-	}
 
+	}	
 
-	public Pedido(Integer id, Date date, Endereco enderecoDeEntrega, Cliente cliente) {
+	public Pedido(Integer id, Date instance, Cliente cliente, Endereco enderecoDeEntrega) {
 		super();
 		this.id = id;
-		this.instance = date;
+		this.instance = instance;
+		this.cliente = cliente;
 		this.enderecoDeEntrega = enderecoDeEntrega;
-		this.setCliente(cliente);
 	}
 
 
@@ -84,24 +89,22 @@ public class Pedido implements Serializable{
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
 	}
-	
+
 	public Cliente getCliente() {
 		return cliente;
 	}
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
-	}	
+	}
 
 	public Set<ItemPedido> getItens() {
 		return itens;
 	}
 
-
 	public void setItens(Set<ItemPedido> itens) {
 		this.itens = itens;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -126,7 +129,6 @@ public class Pedido implements Serializable{
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}	
-	
+	}
 
 }
