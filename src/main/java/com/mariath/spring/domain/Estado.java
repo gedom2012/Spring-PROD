@@ -55,8 +55,8 @@ public class Estado implements Serializable {
 		return cidades;
 	}
 
-	public void setCidade(List<Cidade> cidade) {
-		this.cidades = cidade;
+	public void setCidade(List<Cidade> cidades) {
+		this.cidades = cidades;
 	}
 
 	@Override

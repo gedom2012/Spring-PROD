@@ -13,7 +13,7 @@ private TipoCliente(int cod, String descricao) {
 	this.descricao = descricao;
 }
 
-public int getCode() {
+public int getCod() {
 	return cod;
 }
 
@@ -27,7 +27,7 @@ public static TipoCliente toEnum(Integer cod) {
 	}
 	
 	for(TipoCliente x : TipoCliente.values()) {
-		if (cod.equals(x.getCode())) {
+		if (cod.equals(x.getCod())) {
 			return x;
 		}
 	}

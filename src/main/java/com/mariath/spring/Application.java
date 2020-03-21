@@ -32,7 +32,7 @@ import com.mariath.spring.repositories.PedidoRepository;
 import com.mariath.spring.repositories.ProdutoRepository;
 
 @SpringBootApplication
-public class NewApplication implements CommandLineRunner {
+public class Application implements CommandLineRunner {
 
 	@Autowired
 	private CategoriaRepository categoriaRepository;
@@ -54,7 +54,7 @@ public class NewApplication implements CommandLineRunner {
 	private ItemPedidoRepositry itemPedidoRepository;
 
 	public static void main(String[] args) {
-		SpringApplication.run(NewApplication.class, args);
+		SpringApplication.run(Application.class, args);
 
 	}
 
