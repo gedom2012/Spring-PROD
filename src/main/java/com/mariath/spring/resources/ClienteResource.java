@@ -1,4 +1,4 @@
-	package com.mariath.spring.resources;
+package com.mariath.spring.resources;
 
 import java.net.URI;
 import java.util.List;
@@ -34,7 +34,7 @@ public class ClienteResource {
 		Cliente obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDTO) {
 		Cliente obj = service.fromDTO(objDTO);
