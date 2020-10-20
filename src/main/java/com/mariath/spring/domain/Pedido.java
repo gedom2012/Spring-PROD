@@ -56,10 +56,10 @@ public class Pedido implements Serializable {
 		this.enderecoDeEntrega = enderecoDeEntrega;
 	}
 
-	public double getValorTotal() {
+	public Double getValorTotal() {
 		double soma = 0.0;
 		for (ItemPedido ip : itens) {
-			return soma = soma + ip.getSubTotal();
+			soma = soma + ip.getSubTotal();
 		}
 		return soma;
 	}
@@ -110,6 +110,14 @@ public class Pedido implements Serializable {
 
 	public void setItens(Set<ItemPedido> itens) {
 		this.itens = itens;
+	}	
+
+	public Date getInstance() {
+		return instance;
+	}
+
+	public void setInstance(Date instance) {
+		this.instance = instance;
 	}
 
 	@Override
